@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/on_tap_ibc'
+
+OnTapIbc::CLI.new.start
