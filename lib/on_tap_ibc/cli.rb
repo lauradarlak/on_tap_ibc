@@ -1,8 +1,33 @@
 class OnTapIbc::CLI
 
   def start
-    puts "Howdy!"
+    puts "What's on tap at Ithaca Beer Company"
+    puts "#{OnTapIbc::Scraper.updated_last}"
+
+    OnTapIbc::Scraper.new.scrape_menu
+
+    list_beers
   end
+
+  def list_beers
+
+    five = []
+    nofive = []
+    OnTapIbc::Beer.all.each do |beer|
+      beer.short_desc.include?("5BBL") ? five << beer : nofive << beer
+    end
+    puts "Flagship and Seasonal Beers"
+    nofive.map.with_index(1) do |beer, index|
+      puts "#{index}. #{beer.name} - #{beer.abv}"
+    end
+    puts "----------------------------"
+    puts "5 Barrel Brews"
+    five.map.with_index(1) do |beer, index|
+        puts "#{index}. #{beer.name} - #{beer.abv}"
+    end
+
+  end
+
 
 
 end

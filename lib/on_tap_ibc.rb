@@ -1,5 +1,8 @@
-require_relative "./on_tap_ibc/version"
+require 'open-uri'
+require 'nokogiri'
+require 'pry'
 
-require_relative './on_tap_ibc/cli'
-require_relative './on_tap_ibc/scraper'
-require_relative './on_tap_ibc/beer'
+require 'on_tap_ibc/version'
+require 'on_tap_ibc/cli'
+require 'on_tap_ibc/scraper'
+require 'on_tap_ibc/beer'
