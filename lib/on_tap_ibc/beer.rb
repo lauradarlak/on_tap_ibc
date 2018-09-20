@@ -1,4 +1,4 @@
-require_relative 'scraper.rb'
+# require_relative 'scraper.rb'
 
 class OnTapIbc::Beer
   attr_accessor :name, :abv, :short_desc, :url

@@ -1,11 +1,12 @@
 require 'nokogiri'
 require 'open-uri'
 
-require_relative 'beer.rb'
+# require_relative 'beer.rb'
 
 class OnTapIbc::Scraper
 
-  def initialize
+  def initialize(url = nil)
+    @url = url
   end
 
   def self.updated_last
@@ -30,4 +31,39 @@ class OnTapIbc::Scraper
 
   end
 
+  # def scrape_urls
+  #   @doc = Nokogiri::HTML(open("https://www.ithacabeer.com/beers/"))
+  #   @doc.search("div.intrinsic a").each do |url|
+  #     beer_page = OnTapIbc::BeerPage.new
+  #     beer_page.urls = url.attr("href").text
+  #     beer_page.save
+  #
+  #   end
+  #
+  #
+  # end
+
+  def self.scrape_urls
+    doc = Nokogiri::HTML(open("https://www.ithacabeer.com/beers/"))
+    urls = []
+
+    doc.search("div.intrinsic a").each do |url|
+      urls << url.attribute("href").value
+    end
+
+    urls
+
+  end
+
+#   def self.assign_urls
+#     self.scrape_urls.collect do |url|
+#       puts "#{url}"
+#     end
+#     #   if url.include?("#{OnTapIbc::Beer.new.name.downcase.gsub!(/\s/, "")}")
+#     #     OnTapIbc::Beer.name.url = url
+#     #   end
+#     #   puts "#{OnTapIbc::Beer.name.url}"
+#     # end
+#   end
+# self.assign_urls
 end
