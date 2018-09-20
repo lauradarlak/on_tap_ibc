@@ -4,7 +4,7 @@ class OnTapIbc::CLI
     puts "What's on tap at Ithaca Beer Company"
     puts "#{OnTapIbc::Scraper.updated_last}"
 
-    OnTapIbc::Scraper.new.scrape_menu
+    binding.pry
 
     list_beers
   end

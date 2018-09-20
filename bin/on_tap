@@ -3,5 +3,7 @@
 require "bundler/setup"
 require 'on_tap_ibc'
 
+OnTapIbc::Scraper.new.scrape_urls
+OnTapIbc::Scraper.new.scrape_menu
 
 OnTapIbc::CLI.new.start
