@@ -5,9 +5,9 @@ require 'open-uri'
 
 class OnTapIbc::Scraper
 
-  def initialize(url = nil)
-    @url = url
-  end
+  # def initialize(url = nil)
+  #   @url = url
+  # end
 
   def self.updated_last
     doc = Nokogiri::HTML(open("https://www.ithacabeer.com/taproom-menu/#anchor-tap-list"))
@@ -35,35 +35,22 @@ class OnTapIbc::Scraper
     @doc = Nokogiri::HTML(open("https://www.ithacabeer.com/beers/"))
     @doc.search("div.intrinsic a").each do |url|
       beer_page = OnTapIbc::BeerPage.new
-      beer_page.url = url.attribute("href").value
+      beer_page.url = url["href"]
       beer_page.save
 
     end
+  end
+
+  def self.scrape_profile(selected_tap)
+    @doc = Nokogiri::HTML(open(selected_tap.url))
+    # doc = Nokogiri::HTML(open("https://www.ithacabeer.com/ithaca-beer-core-beliefs#flowerpower"))
+    @doc.search("div.col.sqs-col-10.span-10").each do |beer|
+      beer = doc.css("div.col.sqs-col-10.span-10")
+      selected_tap.style = beer.css("div p.beerDetails2").text.strip
+      selected_tap.long_desc = beer.css("div.html-block p").text.strip
+      selected_tap.hops = beer.css('strong')[0].next.text.strip
 
 
   end
-  #
-  # def self.scrape_urls
-  #   doc = Nokogiri::HTML(open("https://www.ithacabeer.com/beers/"))
-  #   urls = []
-  #
-  #   doc.search("div.intrinsic a").each do |url|
-  #     urls << url.attribute("href").value
-  #   end
-  #
-  #   urls
-  #
-  # end
 
-#   def self.assign_urls
-#     self.scrape_urls.collect do |url|
-#       puts "#{url}"
-#     end
-#     #   if url.include?("#{OnTapIbc::Beer.new.name.downcase.gsub!(/\s/, "")}")
-#     #     OnTapIbc::Beer.name.url = url
-#     #   end
-#     #   puts "#{OnTapIbc::Beer.name.url}"
-#     # end
-#   end
-# self.assign_urls
 end

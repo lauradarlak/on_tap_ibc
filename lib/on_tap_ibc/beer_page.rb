@@ -10,7 +10,7 @@ class OnTapIbc::BeerPage
 
   def save
     @@all << self
-
   end
+
 
 end
