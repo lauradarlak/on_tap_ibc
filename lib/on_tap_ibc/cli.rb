@@ -28,7 +28,6 @@ class OnTapIbc::CLI
       end
 
       sorted_tap_arr = (nofive + five).flatten
-
       select_tap(sorted_tap_arr)
   end
 
@@ -36,15 +35,22 @@ class OnTapIbc::CLI
     input = gets.to_i
 
     selected_tap = sorted_tap_arr[input-1]
-binding.pry
-    OnTapIbc::Scraper.scrape_profile(selected_tap)
-    display_profile(selected_tap)
+
+    if selected_tap.url != nil
+      OnTapIbc::Scraper.scrape_profile(selected_tap)
+      display_profile(selected_tap)
+    else display_basic(selected_tap)
+    end
   end
 
   def display_profile(selected_tap)
     puts "#{selected_tap.style}"
     puts "#{selected_tap.long_desc}"
     puts "#{selected_tap.hops}"
+  end
+
+  def display_basic(selected_tap)
+    puts "#{selected_tap.short_desc}"
   end
 
 end

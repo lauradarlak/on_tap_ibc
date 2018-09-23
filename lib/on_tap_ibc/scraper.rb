@@ -25,7 +25,7 @@ class OnTapIbc::Scraper
       name = beer.css("div.menu-item-title").text.strip # assign beer name
       abv = beer.css("span.menu-item-price-top").text.strip # assign ABV
       short_desc = beer.css("div.menu-item-description").text.strip # assign short description
-      OnTapIbc::Beer.create(name, abv, short_desc, concat_name = nil)
+      OnTapIbc::Beer.create(name, abv, short_desc)
 
     end
 
@@ -42,12 +42,12 @@ class OnTapIbc::Scraper
   end
 
   def self.scrape_profile(selected_tap)
-    doc = Nokogiri::HTML(open(selected_tap.url))
+    doc = Nokogiri::HTML(open("https://www.ithacabeer.com" + selected_tap.url))
     # doc = Nokogiri::HTML(open("https://www.ithacabeer.com/ithaca-beer-core-beliefs#flowerpower"))
     # doc.search("div.col.sqs-col-10.span-10").each do |beer|
-      beer = doc.css("div.col.sqs-col-10.span-10").first
+      beer = doc.css("div.col.sqs-col-10.span-10")
       selected_tap.style = beer.css("div p.beerDetails2").text.strip
-      selected_tap.long_desc = beer.css("div.html-block p")[0].text.strip
+      selected_tap.long_desc = beer.css("div.html-block p").text.strip
       selected_tap.hops = beer.css('strong')[0].next.text.strip
   end
 
