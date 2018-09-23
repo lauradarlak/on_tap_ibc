@@ -5,9 +5,12 @@ class OnTapIbc::Beer
 
   @@all = []
 
-  # def initialize()
-  #   @concat_name
-  # end
+  def initialize(name,abv,short_desc,concat_name = nil)
+    self.name = name
+    self.abv = abv
+    self.short_desc = short_desc
+    @concat_name = self.name.downcase.gsub!(/\s/, "")
+  end
 
   def self.all
     @@all
@@ -17,22 +20,14 @@ class OnTapIbc::Beer
     @@all << self
   end
 
-  def name=(name)
-   @name = name
-   @concat_name = self.name.downcase.gsub!(/\s/, "")
-   url
+  def self.create(name,abv,short_desc,concat_name = nil)
+   beer = self.new(name,abv,short_desc,concat_name = nil)
+   beer.save
+   OnTapIbc::BeerPage.url(beer)
  end
 
- def url
-   OnTapIbc::BeerPage.all.find do |urls|
-     if urls.url == "/ithaca-beer-core-beliefs\##{self.concat_name}"
-       @url = "https://www.ithacabeer.com/ithaca-beer-core-beliefs\##{self.concat_name}"
-     elsif urls.url == "/ithaca-beer-random-acts\##{self.concat_name}"
-       @url = "https://www.ithacabeer.com/ithaca-beer-random-acts\##{self.concat_name}"
-     else @url = "https://www.ithacabeer.com"
-     end
-   end
- end
+
+
 
 
 end

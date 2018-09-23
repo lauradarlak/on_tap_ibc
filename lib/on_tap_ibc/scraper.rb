@@ -20,12 +20,12 @@ class OnTapIbc::Scraper
 
     @doc.search("div#block-yui_3_17_2_8_1508769314339_15193 div.menu-items div.menu-item").each do |beer|
 
-      new_beer = OnTapIbc::Beer.new # create beer instance
+      # new_beer = OnTapIbc::Beer.new # create beer instance
 
-      new_beer.name = beer.css("div.menu-item-title").text.strip # assign beer name
-      new_beer.abv = beer.css("span.menu-item-price-top").text.strip # assign ABV
-      new_beer.short_desc = beer.css("div.menu-item-description").text.strip # assign short description
-      new_beer.save
+      name = beer.css("div.menu-item-title").text.strip # assign beer name
+      abv = beer.css("span.menu-item-price-top").text.strip # assign ABV
+      short_desc = beer.css("div.menu-item-description").text.strip # assign short description
+      OnTapIbc::Beer.create(name, abv, short_desc, concat_name = nil)
 
     end
 
@@ -49,9 +49,6 @@ class OnTapIbc::Scraper
       selected_tap.style = beer.css("div p.beerDetails2").text.strip
       selected_tap.long_desc = beer.css("div.html-block p")[0].text.strip
       selected_tap.hops = beer.css('strong')[0].next.text.strip
-
-
-
   end
 
 end

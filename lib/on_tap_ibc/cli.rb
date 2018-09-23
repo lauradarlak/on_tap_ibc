@@ -28,7 +28,7 @@ class OnTapIbc::CLI
       end
 
       sorted_tap_arr = (nofive + five).flatten
-      binding.pry
+
       select_tap(sorted_tap_arr)
   end
 
@@ -36,7 +36,7 @@ class OnTapIbc::CLI
     input = gets.to_i
 
     selected_tap = sorted_tap_arr[input-1]
-
+binding.pry
     OnTapIbc::Scraper.scrape_profile(selected_tap)
     display_profile(selected_tap)
   end
