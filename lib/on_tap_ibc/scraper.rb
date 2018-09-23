@@ -42,13 +42,14 @@ class OnTapIbc::Scraper
   end
 
   def self.scrape_profile(selected_tap)
-    @doc = Nokogiri::HTML(open(selected_tap.url))
+    doc = Nokogiri::HTML(open(selected_tap.url))
     # doc = Nokogiri::HTML(open("https://www.ithacabeer.com/ithaca-beer-core-beliefs#flowerpower"))
-    @doc.search("div.col.sqs-col-10.span-10").each do |beer|
-      beer = doc.css("div.col.sqs-col-10.span-10")
+    # doc.search("div.col.sqs-col-10.span-10").each do |beer|
+      beer = doc.css("div.col.sqs-col-10.span-10").first
       selected_tap.style = beer.css("div p.beerDetails2").text.strip
-      selected_tap.long_desc = beer.css("div.html-block p").text.strip
+      selected_tap.long_desc = beer.css("div.html-block p")[0].text.strip
       selected_tap.hops = beer.css('strong')[0].next.text.strip
+
 
 
   end
