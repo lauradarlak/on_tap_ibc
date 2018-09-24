@@ -15,7 +15,8 @@ class OnTapIbc::CLI
 
   def add_beer_details_to_beers
     OnTapIbc::Beer.all.each do |beer|
-      attributes = OnTapIbc::Scraper.scrape_detail_pages
+      attributes = OnTapIbc::Scraper.all_details
+
       beer.add_beer_details(attributes)
     end
   end
@@ -37,8 +38,23 @@ class OnTapIbc::CLI
         puts "#{index}. #{beer.name} - #{beer.abv}"
     end
 
+    sorted_tap_arr = (nofive + five).flatten
+    select_tap(sorted_tap_arr)
   end
 
+  def select_tap(sorted_tap_arr)
+    input = gets.to_i
 
+    selected_tap = sorted_tap_arr[input-1]
+    display_profile(selected_tap)
+
+  end
+
+  def display_profile(selected_tap)
+    puts "#{selected_tap.name}"
+    puts "#{selected_tap.style}"
+    puts "#{selected_tap.long_desc}"
+    puts "#{selected_tap.hops}"
+  end
 
 end
