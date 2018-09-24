@@ -32,17 +32,36 @@ class OnTapIbc::Scraper
     current_beers
   end
 
-  def scrape_core_beliefs
-      ["https:///www.ithacabeer.com/ithaca-beer-core-beliefs", "https://www.ithacabeer.com/ithaca-beer-random-acts"].each do |url|
+  # def self.scrape_core_beliefs
+  #     # ["https:///www.ithacabeer.com/ithaca-beer-core-beliefs", "https://www.ithacabeer.com/ithaca-beer-random-acts"].each do |url|
+  #
+  #     beers = Nokogiri::HTML(open("https://www.ithacabeer.com/ithaca-beer-core-beliefs"))
+  #     beer_hash = {}
+  #     beers.css("div.col.sqs-col-10.span-10").each do |beer|
+  #       beer_hash[:name] = beer.css("div p.beerDetails").text.strip
+  #       beer_hash[:name][:style] = beer.css("div p.beerDetails2").text.strip
+  #       beer_hash[:name][:long_desc] = beer.css("div.html-block p").text.strip
+  #       # beer_hash[:hops] = beer.css("div.html-block p")[1].text.strip
+  #     end
+  #   beer_hash
+  # end
+
+  def self.scrape_core_beliefs
+      ["https:///www.ithacabeer.com/ithaca-beer-core-beliefs","https://www.ithacabeer.com/ithaca-beer-random-acts"].each do |url|
+
       beers = Nokogiri::HTML(open(url))
+      beer_hashes = {}
       beers.css("div.col.sqs-col-10.span-10").each do |beer|
-        binding.pry
-        beer_hash[:name] = beer.css("div p.beerDetails").text.strip
-        beer_hash[:name][:style] = beer.css("div p.beerDetails2").text.strip
-        beer_hash[:name][:long_desc] = beer.css("div.html-block p").text.strip,
-        beer_hash[:name][:hops] = beer.css("div.html-block p")[1].text.strip
+
+      beer_hashes["#{beer.css("div p.beerDetails").text.strip}"] = {
+        style: beer.css("div p.beerDetails2").text.strip,
+        long_desc: beer.css("div.html-block p").text.strip
+      }
       end
     end
+
+
+    beer_hash
   end
 
 end

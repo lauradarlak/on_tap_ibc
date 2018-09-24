@@ -14,6 +14,13 @@ class OnTapIbc::Beer
     current_beers.each {|beer| self.new(beer)}
   end
 
+  def self.assign_beer
+    self.all.each do |beer|
+      beer_detail_hash = @beer_array.select{|key, hash| hash[:name] == "#{beer.name}" }
+    end
+    beer_detail_hash
+  end
+
   def add_beer_details(details_hash)
     details_hash.each do |beer, beer_details_hash|
       beer_details_hash.each do |attribute, data|

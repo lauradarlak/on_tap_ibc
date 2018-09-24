@@ -15,7 +15,7 @@ class OnTapIbc::CLI
 
   def add_beer_details_to_beers
     OnTapIbc::Beer.all.each do |beer|
-      attributes = OnTapIbc::Scraper.all_details
+      attributes = OnTapIbc::Beer.assign_beer
 
       beer.add_beer_details(attributes)
     end
