@@ -5,12 +5,6 @@ require 'open-uri'
 
 class OnTapIbc::Scraper
 
-  @@beer_hash = {}
-
-  def self.all_details
-    @@beer_hash
-  end
-
   def self.updated_last
     doc = Nokogiri::HTML(open("https://www.ithacabeer.com/taproom-menu/#anchor-tap-list"))
     updated_last = doc.search("div#block-yui_3_17_2_8_1508769314339_15193 div.menu-section-title").text.strip
@@ -47,21 +41,22 @@ class OnTapIbc::Scraper
   # end
 
   def self.scrape_core_beliefs
-      ["https:///www.ithacabeer.com/ithaca-beer-core-beliefs","https://www.ithacabeer.com/ithaca-beer-random-acts"].each do |url|
+      ["https://www.ithacabeer.com/ithaca-beer-core-beliefs","https://www.ithacabeer.com/ithaca-beer-random-acts"].each do |url|
 
       beers = Nokogiri::HTML(open(url))
       beer_hashes = {}
       beers.css("div.col.sqs-col-10.span-10").each do |beer|
 
       beer_hashes["#{beer.css("div p.beerDetails").text.strip}"] = {
+        name: beer.css("div p.beerDetails").text.strip,
         style: beer.css("div p.beerDetails2").text.strip,
         long_desc: beer.css("div.html-block p").text.strip
       }
       end
+      
+      beer_hashes
     end
 
-
-    beer_hash
   end
 
 end

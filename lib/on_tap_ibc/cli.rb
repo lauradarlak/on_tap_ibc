@@ -5,7 +5,7 @@ class OnTapIbc::CLI
     puts "#{OnTapIbc::Scraper.updated_last}"
     make_beers
     add_beer_details_to_beers
-    list_beers
+    # list_beers
   end
 
   def make_beers
