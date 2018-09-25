@@ -43,9 +43,14 @@ class OnTapIbc::CLI
 
   def display_profile(selected_tap)
     puts "#{selected_tap.name}"
-    puts "#{selected_tap.style}"
-    puts "#{selected_tap.long_desc}"
-    puts "#{selected_tap.hops}"
+    if selected_tap.long_desc == nil
+      puts "#{selected_tap.short_desc}"
+      puts "#{selected_tap.abv}"
+    else
+      puts "#{selected_tap.style}"
+      puts "#{selected_tap.long_desc}"
+      puts "#{selected_tap.hops}"
+    end
   end
 
 end
