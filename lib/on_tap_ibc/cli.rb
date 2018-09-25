@@ -34,7 +34,7 @@ class OnTapIbc::CLI
     end
     puts "----------------------------"
     puts "5 Barrel Brews"
-    five.map.with_index(1) do |beer, index|
+    five.map.with_index(nofive.length + 1) do |beer, index|
         puts "#{index}. #{beer.name} - #{beer.abv}"
     end
 
@@ -45,7 +45,7 @@ class OnTapIbc::CLI
   def select_tap(sorted_tap_arr)
     input = gets.to_i
     selected_tap = sorted_tap_arr[input-1]
-      
+
     OnTapIbc::Beer.assign_beer(selected_tap)
     display_profile(selected_tap)
 
