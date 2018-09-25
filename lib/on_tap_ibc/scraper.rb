@@ -49,7 +49,7 @@ class OnTapIbc::Scraper
       beers.css("div.col.sqs-col-10.span-10").each do |beer|
 
       beer_hashes["#{beer.css("div p.beerDetails").text.strip}"] = {
-        name: beer.css("div p.beerDetails").text.strip,
+        # name: beer.css("div p.beerDetails").text.strip,
         style: beer.css("div p.beerDetails2").text.strip,
         long_desc: beer.css("div.html-block p").text.strip
       }
@@ -57,6 +57,7 @@ class OnTapIbc::Scraper
 
 
     end
+
     beer_hashes
   end
 
