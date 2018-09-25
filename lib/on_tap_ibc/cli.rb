@@ -4,7 +4,6 @@ class OnTapIbc::CLI
     puts "What's on tap at Ithaca Beer Company"
     puts "#{OnTapIbc::Scraper.updated_last}"
     make_beers
-    # add_beer_details_to_beers
     list_beers
   end
 
@@ -12,14 +11,6 @@ class OnTapIbc::CLI
     current_beers = OnTapIbc::Scraper.scrape_menu
     OnTapIbc::Beer.create_from_menu(current_beers)
   end
-
-  # def add_beer_details_to_beers
-  #   OnTapIbc::Beer.all.each do |beer|
-  #     attributes = OnTapIbc::Beer.assign_beer
-  #
-  #     beer.add_beer_details(attributes)
-  #   end
-  # end
 
   def list_beers
 
@@ -48,7 +39,6 @@ class OnTapIbc::CLI
 
     OnTapIbc::Beer.assign_beer(selected_tap)
     display_profile(selected_tap)
-
   end
 
   def display_profile(selected_tap)

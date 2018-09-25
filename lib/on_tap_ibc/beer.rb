@@ -1,4 +1,3 @@
-# require_relative 'scraper.rb'
 
 class OnTapIbc::Beer
   attr_accessor :name, :abv, :short_desc, :style, :long_desc, :hops

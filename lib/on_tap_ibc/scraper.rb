@@ -1,8 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
 
-# require_relative 'beer.rb'
-
 class OnTapIbc::Scraper
 
   def self.updated_last
@@ -54,7 +52,6 @@ class OnTapIbc::Scraper
         long_desc: beer.css("div.html-block p").text.strip
       }
       end
-
 
     end
 
