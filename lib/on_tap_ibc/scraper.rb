@@ -41,10 +41,11 @@ class OnTapIbc::Scraper
   # end
 
   def self.scrape_core_beliefs
+      beer_hashes = {}
       ["https://www.ithacabeer.com/ithaca-beer-core-beliefs","https://www.ithacabeer.com/ithaca-beer-random-acts"].each do |url|
 
       beers = Nokogiri::HTML(open(url))
-      beer_hashes = {}
+
       beers.css("div.col.sqs-col-10.span-10").each do |beer|
 
       beer_hashes["#{beer.css("div p.beerDetails").text.strip}"] = {
@@ -53,10 +54,10 @@ class OnTapIbc::Scraper
         long_desc: beer.css("div.html-block p").text.strip
       }
       end
-      
-      beer_hashes
-    end
 
+
+    end
+    beer_hashes
   end
 
 end

@@ -16,10 +16,13 @@ class OnTapIbc::Beer
 
   def self.assign_beer
     self.all.each do |beer|
-      @beer_detail_hash = OnTapIbc::Scraper.scrape_core_beliefs.select{|key, v| v[:name] == "#{beer.name}" }
+      # clients.select{|key, hash| hash["client_id"] == "2180" }
+
+      @beer_detail_hash = OnTapIbc::Scraper.scrape_core_beliefs.find{|k, v| v = beer.name }
+    
     end
-  
-    @beer_detail_hash
+
+      @beer_detail_hash
   end
 
   def add_beer_details(details_hash)
