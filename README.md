@@ -1,8 +1,6 @@
 # OnTapIbc
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/on_tap_ibc`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem provides a CLI to view beers currently on tap at Ithaca Beer Company. Users can select a taps to read a description of each beer and, when available, an ingredient list.
 
 ## Installation
 
@@ -22,7 +20,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Run: ```./bin/on_tap``` after installing the gem.
 
 ## Development
 
@@ -37,7 +35,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/'laura
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the OnTapIbc project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/'lauradarlak'/on_tap_ibc/blob/master/CODE_OF_CONDUCT.md).
