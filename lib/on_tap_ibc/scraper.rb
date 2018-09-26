@@ -49,12 +49,14 @@ class OnTapIbc::Scraper
       beer_hashes["#{beer.css("div p.beerDetails").text.strip.upcase}"] = {
         # name: beer.css("div p.beerDetails").text.strip,
         style: beer.css("div p.beerDetails2").text.strip,
-        long_desc: beer.css("div.html-block p").text.strip
+        long_desc: beer.css("div.html-block p")[0].text.strip,
+        addl1: beer.css("div.html-block p").last.text.strip
+        # addl1: beer.css("div.html-block p strong")[0].next.text.strip
       }
       end
 
     end
-
+  
     beer_hashes
   end
 

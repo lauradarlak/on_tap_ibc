@@ -48,8 +48,9 @@ class OnTapIbc::CLI
       puts "#{selected_tap.abv}"
     else
       puts "#{selected_tap.style}"
+      puts "#{selected_tap.abv}"
       puts "#{selected_tap.long_desc}"
-      puts "#{selected_tap.hops}"
+      selected_tap.addl1.each {|i| puts "#{i}"}
     end
   end
 

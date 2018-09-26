@@ -1,6 +1,6 @@
 
 class OnTapIbc::Beer
-  attr_accessor :name, :abv, :short_desc, :style, :long_desc, :hops
+  attr_accessor :name, :abv, :short_desc, :style, :long_desc, :addl1
 
   @@all = []
 
@@ -22,15 +22,12 @@ class OnTapIbc::Beer
       end
   end
 
-  # def self.add_beer_details(beer_detail_hash)
-  #     beer_detail_hash[1].each do |attribute, data|
-  #       self.send(("#{attribute}="), data)
-  #   end
-  # end
+  def addl1=(addl1)
+    @addl1 = addl1.split(/(?<=[a-z])(?=[A-Z])/)
+  end
 
   def self.all
     @@all
   end
-
 
 end
