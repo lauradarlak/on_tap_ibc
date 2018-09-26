@@ -52,7 +52,9 @@ class OnTapIbc::CLI
   end
 
   def display_profile(selected_tap)
-    puts "#{selected_tap.name}"
+    puts "----------------------------"
+    puts "#{selected_tap.name.upcase}"
+    puts "----------------------------"
     if selected_tap.long_desc == nil
       puts wrap("DESCRIPTION #{selected_tap.short_desc}")
       puts "ABV #{selected_tap.abv}"
