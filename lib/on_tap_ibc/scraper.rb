@@ -16,27 +16,13 @@ class OnTapIbc::Scraper
     beers.css("div#block-yui_3_17_2_8_1508769314339_15193 div.menu-items div.menu-item").each do |beer|
 
       current_beers << {
-        :name => beer.css("div.menu-item-title").text.strip, # assign beer name
-        :abv => beer.css("span.menu-item-price-top").text.strip, # assign ABV
-        :short_desc => beer.css("div.menu-item-description").text.strip # assign short description
+        :name => beer.css("div.menu-item-title").text.strip,
+        :abv => beer.css("span.menu-item-price-top").text.strip,
+        :short_desc => beer.css("div.menu-item-description").text.strip 
       }
     end
     current_beers
   end
-
-  # def self.scrape_core_beliefs
-  #     # ["https:///www.ithacabeer.com/ithaca-beer-core-beliefs", "https://www.ithacabeer.com/ithaca-beer-random-acts"].each do |url|
-  #
-  #     beers = Nokogiri::HTML(open("https://www.ithacabeer.com/ithaca-beer-core-beliefs"))
-  #     beer_hash = {}
-  #     beers.css("div.col.sqs-col-10.span-10").each do |beer|
-  #       beer_hash[:name] = beer.css("div p.beerDetails").text.strip
-  #       beer_hash[:name][:style] = beer.css("div p.beerDetails2").text.strip
-  #       beer_hash[:name][:long_desc] = beer.css("div.html-block p").text.strip
-  #       # beer_hash[:hops] = beer.css("div.html-block p")[1].text.strip
-  #     end
-  #   beer_hash
-  # end
 
   def self.scrape_core_beliefs
       beer_hashes = {}
@@ -45,18 +31,13 @@ class OnTapIbc::Scraper
       beers = Nokogiri::HTML(open(url))
 
       beers.css("div.col.sqs-col-10.span-10").each do |beer|
-
-      beer_hashes["#{beer.css("div p.beerDetails").text.strip.upcase}"] = {
-        # name: beer.css("div p.beerDetails").text.strip,
-        style: beer.css("div p.beerDetails2").text.strip,
-        long_desc: beer.css("div.html-block p")[0].text.strip,
-        addl1: beer.css("div.html-block p").last.text.strip
-        # addl1: beer.css("div.html-block p strong")[0].next.text.strip
-      }
+        beer_hashes["#{beer.css("div p.beerDetails").text.strip.upcase}"] = {
+          style: beer.css("div p.beerDetails2").text.strip,
+          long_desc: beer.css("div.html-block p")[0].text.strip,
+          addl1: beer.css("div.html-block p").last.text.strip
+        }
       end
-
     end
-
     beer_hashes
   end
 
