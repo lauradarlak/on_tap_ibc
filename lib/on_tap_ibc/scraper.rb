@@ -56,7 +56,7 @@ class OnTapIbc::Scraper
       end
 
     end
-  
+
     beer_hashes
   end
 

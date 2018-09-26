@@ -28,6 +28,7 @@ class OnTapIbc::CLI
     five.map.with_index(nofive.length + 1) do |beer, index|
         puts "#{index}. #{beer.name} - #{beer.abv}"
     end
+    puts "Select a tap number to learn more."
 
     sorted_tap_arr = (nofive + five).flatten
     select_tap(sorted_tap_arr)
@@ -44,12 +45,11 @@ class OnTapIbc::CLI
   def display_profile(selected_tap)
     puts "#{selected_tap.name}"
     if selected_tap.long_desc == nil
-      puts "#{selected_tap.short_desc}"
-      puts "#{selected_tap.abv}"
+      puts "DESCRIPTION #{selected_tap.short_desc}"
+      puts "ABV: #{selected_tap.abv}"
     else
-      puts "#{selected_tap.style}"
-      puts "#{selected_tap.abv}"
-      puts "#{selected_tap.long_desc}"
+      puts "STYLE #{selected_tap.style}"
+      puts "DESCRIPTION #{selected_tap.long_desc}"
       selected_tap.addl1.each {|i| puts "#{i}"}
     end
   end
