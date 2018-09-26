@@ -13,7 +13,7 @@ class OnTapIbc::Beer
   end
 
   def self.assign_beer(selected_tap)
-    @beer_detail_hash = OnTapIbc::Scraper.scrape_core_beliefs.find{|k, v| k == selected_tap.name.upcase }
+    @beer_detail_hash = OnTapIbc::Scraper.beer_details.find{|k, v| k == selected_tap.name.upcase }
       if @beer_detail_hash != nil
         @beer_detail_hash[1].each do |attribute, data|
           selected_tap.send(("#{attribute}="), data)

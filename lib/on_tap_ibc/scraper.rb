@@ -18,10 +18,14 @@ class OnTapIbc::Scraper
       current_beers << {
         :name => beer.css("div.menu-item-title").text.strip,
         :abv => beer.css("span.menu-item-price-top").text.strip,
-        :short_desc => beer.css("div.menu-item-description").text.strip 
+        :short_desc => beer.css("div.menu-item-description").text.strip
       }
     end
     current_beers
+  end
+
+  def self.beer_details
+    self.scrape_core_beliefs
   end
 
   def self.scrape_core_beliefs
