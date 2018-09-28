@@ -1,7 +1,9 @@
 class OnTapIbc::CLI
 
-  @@five = []
-  @@nofive = []
+  def initialize
+    @five = []
+    @nofive = []
+  end
 
   def start
     welcome
@@ -25,7 +27,7 @@ class OnTapIbc::CLI
 
   def sort_beers
     OnTapIbc::Beer.all.each do |beer|
-      beer.short_desc.include?("5BBL") ? @@five << beer : @@nofive << beer
+      beer.short_desc.include?("5BBL") ? @five << beer : @nofive << beer
     end
   end
 
@@ -33,17 +35,17 @@ class OnTapIbc::CLI
     puts "\#.      BEER     -     ABV %"
     puts "-----------------------------------------"
     puts "Flagship and Seasonal Beers"
-    @@nofive.map.with_index(1) do |beer, index|
+    @nofive.map.with_index(1) do |beer, index|
       puts "#{index}. #{beer.name} - #{beer.abv}"
     end
     puts "-----------------------------------------"
     puts "5 Barrel Brews"
-    @@five.map.with_index(@@nofive.length + 1) do |beer, index|
+    @five.map.with_index(@nofive.length + 1) do |beer, index|
         puts "#{index}. #{beer.name} - #{beer.abv}"
     end
     puts "-----------------------------------------"
     puts "Select a tap number to learn more about the beer."
-    sorted_tap_arr = (@@nofive + @@five).flatten
+    sorted_tap_arr = (@nofive + @five).flatten
     select_tap(sorted_tap_arr)
   end
 
@@ -54,7 +56,9 @@ class OnTapIbc::CLI
 
       if input.to_i > 0 && input.to_i <= sorted_tap_arr.length
         selected_tap = sorted_tap_arr[input.to_i-1]
-        OnTapIbc::Beer.assign_beer(selected_tap)
+        # binding.pry
+        OnTapIbc::Beer.assign_beer(selected_tap) if selected_tap.style.nil?
+
         display_profile(selected_tap)
       else
         puts "Invalid tap number. Please try again."

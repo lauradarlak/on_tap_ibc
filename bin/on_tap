@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 require "bundler/setup"
-require 'on_tap_ibc'
+require_relative '../lib/on_tap_ibc'
 
 
 OnTapIbc::CLI.new.start
