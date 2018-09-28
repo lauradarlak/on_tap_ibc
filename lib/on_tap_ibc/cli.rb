@@ -56,7 +56,7 @@ class OnTapIbc::CLI
 
       if input.to_i > 0 && input.to_i <= sorted_tap_arr.length
         selected_tap = sorted_tap_arr[input.to_i-1]
-        # binding.pry
+    
         OnTapIbc::Beer.assign_beer(selected_tap) if selected_tap.style.nil?
 
         display_profile(selected_tap)
